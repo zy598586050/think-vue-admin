@@ -1,20 +1,23 @@
 <template>
-  <el-breadcrumb separator-class="el-icon-arrow-right">
-      <transition-group name="breadcrumb">
-          <el-breadcrumb-item v-for="(item, index) in breadList" :key="item.path">
-              <router-link to="/welcome" v-if="index != breadList.length-1">{{item.meta.title}}</router-link>
-              <span v-else>{{ item.meta.title }}</span>
-          </el-breadcrumb-item>
-      </transition-group>
+  <el-breadcrumb separator-class="el-icon-arrow-right" class="ml-4">
+    <el-breadcrumb-item
+      v-for="(item, index) in $route.matched"
+      :key="item.path"
+    >
+      <router-link v-if="index !== $route.matched.length - 1" to="/">{{
+        item.meta.title
+      }}</router-link>
+      <span v-else>{{ item.meta.title }}</span>
+    </el-breadcrumb-item>
   </el-breadcrumb>
 </template>
-<script>
-export default {
-  name: "BreadCrumb",
-  computed: {
-    breadList() {
-      return this.$route.matched;
-    },
-  },
-};
-</script>
+
+<style>
+.el-breadcrumb__inner,
+a {
+  color: #fff !important;
+}
+.el-breadcrumb__separator {
+  color: #fff !important;
+}
+</style>

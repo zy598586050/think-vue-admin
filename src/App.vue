@@ -1,14 +1,10 @@
 <template>
-  <router-view></router-view>
+  <layout v-if="route.meta.layout" />
+  <router-view v-else />
 </template>
 
-<script>
-export default {
-  name: "App",
-};
+<script lang="ts" setup>
+import layout from "@/layout/index.vue";
+import { useRoute } from "vue-router";
+const route = useRoute();
 </script>
-
-<style lang="scss">
-@import "./assets/style/reset.css";
-@import "./assets/style/index.scss";
-</style>
